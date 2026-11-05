@@ -1,0 +1,20 @@
+# Ambiente Virtual
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Testes
+.pytest_cache/
+.coverage
+
+# Segredos
+.env
+
+# Editores
+.vscode/
+.idea/
+
+# Logs
+*.log
