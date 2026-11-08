@@ -1,10 +1,8 @@
 import questionary
-from rich.console import Console
-
 def mostrar_menu():
     try:
         escolha = questionary.select(
-            "TuneSort • MUSIC LIBRARY ORGANIZER\n"
+            "TuneSort • Music Library Organizer\n"
             "\nO que desejas fazer? :)",
             choices=[
                 questionary.Choice(title="Analisar músicas curtidas", value="curtidas"),
@@ -13,7 +11,9 @@ def mostrar_menu():
                 questionary.Choice(title="Configurações", value="config"),
                 questionary.Choice(title="Sobre o TuneSort", value="sobre"),
                 questionary.Choice(title="Sair", value="sair")
-            ]).unsafe_ask()
-        return escolha.upper()
+            ],
+            instruction="(Use as teclas direcionais)"
+        ).unsafe_ask()
+        return escolha
     except KeyboardInterrupt:
         return "sair"

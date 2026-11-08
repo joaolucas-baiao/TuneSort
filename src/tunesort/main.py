@@ -1,15 +1,67 @@
-from src.tunesort.cli import interface
+from tunesort.cli import interface
+from tunesort.cli import banner
+from tunesort import __version__
+from tunesort.cli import ui
+from rich.text import Text
+from rich.panel import Panel
+from questionary import press_any_key_to_continue
 
-def main(escolha):
-    escolha = interface.mostrar_menu()
+def curtidas():
+    print("Em construção...")
+def organizar():
+    print("Em construção...")
+def playlist():
+    print("Em construção...")
+def config():
+    print("Em construção...")
+def sobre():
+    conteudo = Text(justify="left")
+    conteudo.append("[+] Descrição", style="bold white")
+    conteudo.append("  •  ", style="bold dim")
+    conteudo.append("Ferramenta CLI para organizar músicas e automatizar playlists do Spotify", style="bold cyan")
+
+    conteudo.append("\n[+] Versão", style="bold white")
+    conteudo.append("  •  ", style="bold dim")
+    conteudo.append(f"v{__version__}", style="bold cyan")
+
+    conteudo.append("\n[+] Autor", style="bold white")
+    conteudo.append("  •  ", style="bold dim")
+    conteudo.append("Jotlz - (João Lucas)", style="bold cyan")
+
+    conteudo.append("\n[+] Projeto", style="bold white")
+    conteudo.append("  •  ", style="bold dim")
+    conteudo.append("https://github.com/joaolucas-baiao/TuneSort", style="bold dim cyan")
+
+    ui.console.print(
+            Panel(
+                conteudo,
+                title="[bold white]• SOBRE O TUNESORT • ",
+                border_style="bold cyan",
+                padding=(1, 1),
+                expand=False
+            )
+    )
+
+def main():
     acoes = {
-        "curtidas" : 1,
-        "organizar" : 2,
-        "playlist" : 3,
-        "config" : 4,
-        "sobre" : 5,
-        "sair" : 6
-    }
+            "curtidas" : curtidas,
+            "organizar" : organizar,
+            "playlist" : playlist,
+            "config" : config,
+            "sobre" : sobre
+        }
+    while True:
+        ui.limpar_tela()
+        banner.mostrar_banner()
+        escolha = interface.mostrar_menu()
+        if escolha == "sair":
+            ui.console.print("! PROGRAMA ENCERRADO !", style="bold red")
+            break
+        acoes[escolha]()
+        try:
+            press_any_key_to_continue(message="Aperte qualquer tecla para continuar...").unsafe_ask()
+        except KeyboardInterrupt:
+            pass
 
-    acoes[escolha]()
-main()
+if __name__ == "__main__":
+    main()
