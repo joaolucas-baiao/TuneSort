@@ -1,4 +1,5 @@
 from rich.console import Console
+
 console = Console()
 
 def limpar_tela():

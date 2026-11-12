@@ -1,18 +1,18 @@
-from tunesort.cli import interface
-from tunesort.cli import banner
-from tunesort import __version__
-from tunesort.cli import ui
-from rich.text import Text
-from rich.panel import Panel
 from questionary import press_any_key_to_continue
+from rich.panel import Panel
+from rich.text import Text
 
-def curtidas():
+from tunesort import __version__
+from tunesort.cli import banner, interface, ui
+
+
+def acao_curtidas():
     print("Em construção...")
-def organizar():
+def acao_organizar():
     print("Em construção...")
-def playlist():
+def acao_playlist():
     print("Em construção...")
-def config():
+def acao_config():
     print("Em construção...")
 def sobre():
     conteudo = Text(justify="left")
@@ -44,10 +44,10 @@ def sobre():
 
 def main():
     acoes = {
-            "curtidas" : curtidas,
-            "organizar" : organizar,
-            "playlist" : playlist,
-            "config" : config,
+            "curtidas" : acao_curtidas,
+            "organizar" : acao_organizar,
+            "playlist" : acao_playlist,
+            "config" : acao_config,
             "sobre" : sobre
         }
     while True:
@@ -61,7 +61,7 @@ def main():
         try:
             press_any_key_to_continue(message="Aperte qualquer tecla para continuar...").unsafe_ask()
         except KeyboardInterrupt:
-            pass
+            pass #* retorna ao menu
 
 if __name__ == "__main__":
     main()

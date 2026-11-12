@@ -1,9 +1,11 @@
-from tunesort import __version__
-from tunesort.cli import ui
-from rich.text import Text
-from rich.panel import Panel
 from rich.align import Align
 from rich.console import Group
+from rich.panel import Panel
+from rich.text import Text
+
+from tunesort import __version__
+from tunesort.cli import ui
+
 
 def mostrar_banner():
     banner = Text(justify="center")
