@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class ConfigError(Exception):
-    """Mensagem de erro de erro própria"""
+    """Mensagem de erro própria"""
 
 @dataclass(frozen=True)
 class Config:
