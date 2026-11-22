@@ -8,3 +8,28 @@ def test_artista_repetido_aparece_uma_vez():
     musica_b = Musica(uri="spotify:track:b", nome="Admirável Chip Novo", artistas=(pitty, cazuza), data_adicao="2024-01-02T00:00:00Z")
     resultado = artistas_unicos(musicas=[musica_a, musica_b])
     assert [a.id for a in resultado] == ["1", "2"]
+
+
+def test_lista_vazia_retorna_lista_vazia():
+    resultado = artistas_unicos(musicas=[])
+    assert resultado == []
+
+
+def test_musica_com_dois_artistas():
+    xuxa = Artista(id="1", nome="Xuxa")
+    pearljam = Artista(id="2", nome="Pearl Jam")
+
+    musica1 = Musica(uri="spotifu:track:1", nome="Rock dos baixinhos", artistas=(pearljam, xuxa), data_adicao="2021-06-06T00:00:00Z")
+
+    resultado = artistas_unicos(musicas=[musica1])
+    assert [a.nome for a in resultado] == ["Pearl Jam", "Xuxa"]
+
+
+def test_mesmo_artista_com_nome_diferente():
+    racionais1 = Artista("1", "Racionais Mc's")
+    racionais2 = Artista("1", "Racionais Mcs")
+
+    musica1 = Musica(uri="spotify:track:2", nome="Homem na Estrada", artistas=(racionais1, racionais2), data_adicao="2021-01-01T00:00:00Z")
+
+    resultado = artistas_unicos(musicas=[musica1])
+    assert resultado[0].nome == "Racionais Mc's"

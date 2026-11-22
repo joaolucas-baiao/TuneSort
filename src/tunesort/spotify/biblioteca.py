@@ -42,7 +42,7 @@ def artistas_unicos(musicas: list[Musica]) -> list[Artista]:
     for musica in musicas:
         for artista in musica.artistas:
             if artista.id not in vistos:
-                vistos[artista.id] = artista.nome
+                vistos[artista.id] = artista
 
     return list(vistos.values())
 
